@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Start a project — Axiom | a division of Milford Machining & Fabrication</title>
+<meta name="description" content="Project intake for Axiom and Milford Machining & Fabrication: CAD, computational design, automation and the Rhino voxel-to-.3dm plugin.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/intake.css">
+</head>
+<body class="intake-page">
+<header class="nav">
+  <a class="brand" href="index.html">AXIOM<span>/MMF</span></a>
+  <nav><a href="index.html#capabilities">Capabilities</a><a href="index.html#rde2">RDE-2</a><a href="index.html#process">Process</a></nav>
+</header>
+<main class="wrap">
+  <p class="mono label">Project intake</p>
+  <h1 class="ititle">Start a project.</h1>
+  <p class="ilede">Five short steps. Your progress is saved in this browser until you submit.</p>
+
+  <ol class="progress mono" aria-label="Form progress">
+    <li data-p="1">Contact</li><li data-p="2">Service</li><li data-p="3">Details</li><li data-p="4">Project</li><li data-p="5">Review</li>
+  </ol>
+
+  <section id="result" class="result" tabindex="-1" hidden aria-live="polite"></section>
+  <form id="intake" novalidate>
+    <div class="hp" aria-hidden="true"><label for="botcheck">Leave this empty</label><input type="checkbox" id="botcheck" name="botcheck" tabindex="-1" autocomplete="off"></div>
+
+    <fieldset class="step" data-step="1">
+      <legend>01 — Contact</legend>
+      <div class="f"><label for="name">Name *</label><input id="name" name="name" autocomplete="name" required></div>
+      <div class="f"><label for="email">Email *</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+      <div class="f"><label for="company">Company <span class="opt">optional</span></label><input id="company" name="company" autocomplete="organization"></div>
+      <div class="f"><label for="phone">Phone <span class="opt">optional</span></label><input id="phone" name="phone" type="tel" autocomplete="tel" pattern="[0-9+()\-.\s]{7,}"></div>
+    </fieldset>
+
+    <fieldset class="step" data-step="2">
+      <legend>02 — Service *</legend>
+      <div class="choices" role="radiogroup" aria-required="true">
+        <label class="choice"><input type="radio" name="service" value="cad" required><span><b>CAD for hire</b>Models, assemblies, drawings, conversions</span></label>
+        <label class="choice"><input type="radio" name="service" value="axiom"><span><b>Computational design (Axiom)</b>Rule-driven and voxel geometry</span></label>
+        <label class="choice"><input type="radio" name="service" value="automation"><span><b>Automation</b>Shelly, ESP32, CLICK PLC</span></label>
+        <label class="choice"><input type="radio" name="service" value="plugin"><span><b>Rhino voxel-to-.3dm plugin</b>Register interest</span></label>
+        <label class="choice"><input type="radio" name="service" value="other"><span><b>Other</b>Machining, fabrication, something else</span></label>
+      </div>
+    </fieldset>
+
+    <fieldset class="step" data-step="3">
+      <legend>03 — Details</legend>
+      <div class="branch" data-for="cad">
+        <div class="f"><label for="cad_deliverable">Deliverable type *</label><select id="cad_deliverable" name="cad_deliverable" required><option value="">Choose…</option><option>3D part models</option><option>Assemblies</option><option>2D production drawings</option><option>2D-to-3D conversion</option><option>As-built / reverse engineering</option></select></div>
+        <div class="f"><label for="cad_formats">File formats needed *</label><input id="cad_formats" name="cad_formats" placeholder="e.g. STEP, SolidWorks, .3dm, DWG, PDF" required></div>
+        <div class="f"><label for="cad_standard">Drawing standard</label><select id="cad_standard" name="cad_standard"><option value="">Not sure / not needed</option><option>ASME Y14.5 (GD&amp;T)</option><option>ISO</option><option>Company standard</option></select></div>
+        <div class="f"><label for="cad_qty">Number of parts or drawings *</label><input id="cad_qty" name="cad_qty" type="number" min="1" inputmode="numeric" required></div>
+      </div>
+      <div class="branch" data-for="axiom">
+        <div class="f"><label for="ax_problem">What problem are you solving? *</label><textarea id="ax_problem" name="ax_problem" rows="4" placeholder="e.g. lightweighting, lattice infill, a family of parts from one rule set" required></textarea></div>
+        <div class="f"><label for="ax_constraints">Key constraints *</label><textarea id="ax_constraints" name="ax_constraints" rows="3" placeholder="Envelope, loads, interfaces, materials" required></textarea></div>
+        <div class="f"><label for="ax_process">Manufacturing process</label><select id="ax_process" name="ax_process"><option value="">Not decided</option><option>Metal additive (LPBF/DED)</option><option>Polymer additive</option><option>CNC machining</option><option>Casting</option><option>Fabrication</option></select></div>
+      </div>
+      <div class="branch" data-for="automation">
+        <div class="f"><label for="au_site">Site type *</label><select id="au_site" name="au_site" required><option value="">Choose…</option><option>Machine shop / manufacturing</option><option>Farm / agricultural</option><option>Commercial building</option><option>Residential</option><option>Other</option></select></div>
+        <div class="f"><label for="au_io">Approximate I/O count</label><select id="au_io" name="au_io"><option value="">Not sure</option><option>Under 8</option><option>8–32</option><option>33–100</option><option>Over 100</option></select></div>
+        <div class="f"><label for="au_equipment">Existing equipment or controllers</label><textarea id="au_equipment" name="au_equipment" rows="3"></textarea></div>
+        <fieldset class="f inline"><legend>On-site work needed? *</legend><label><input type="radio" name="au_onsite" value="yes" required> Yes</label><label><input type="radio" name="au_onsite" value="no"> No</label><label><input type="radio" name="au_onsite" value="unsure"> Not sure</label></fieldset>
+        <div class="f"><label for="au_location">Location (city, province/state) *</label><input id="au_location" name="au_location" required></div>
+      </div>
+      <div class="branch" data-for="plugin">
+        <div class="f"><label for="pl_use">How would you use it? *</label><textarea id="pl_use" name="pl_use" rows="3" required></textarea></div>
+        <div class="f"><label for="pl_rhino">Rhino version</label><select id="pl_rhino" name="pl_rhino"><option value="">Choose…</option><option>Rhino 8</option><option>Rhino 7</option><option>Other / none yet</option></select></div>
+        <div class="f"><label for="pl_seats">Seats</label><input id="pl_seats" name="pl_seats" type="number" min="1" inputmode="numeric"></div>
+      </div>
+      <div class="branch" data-for="other">
+        <div class="f"><label for="ot_desc">What do you need? *</label><textarea id="ot_desc" name="ot_desc" rows="4" required></textarea></div>
+      </div>
+    </fieldset>
+
+    <fieldset class="step" data-step="4">
+      <legend>04 — Project</legend>
+      <div class="f"><label for="description">Project description *</label><textarea id="description" name="description" rows="5" required minlength="20"></textarea><p class="hint">At least 20 characters.</p></div>
+      <div class="f"><label for="budget">Budget range (CAD) *</label><select id="budget" name="budget" required><option value="">Choose…</option><option>Under $1,000</option><option>$1,000–$5,000</option><option>$5,000–$15,000</option><option>$15,000–$50,000</option><option>Over $50,000</option><option>Not sure yet</option></select></div>
+      <div class="f"><label for="timeline">Timeline *</label><select id="timeline" name="timeline" required><option value="">Choose…</option><option>Urgent (under 2 weeks)</option><option>2–6 weeks</option><option>1–3 months</option><option>Flexible</option></select></div>
+      <div class="f"><label for="file_link">File link <span class="opt">optional</span></label><input id="file_link" name="file_link" type="url" placeholder="https://drive.google.com/…  Dropbox or WeTransfer links also work"><p class="hint">Share a link instead of uploading. Set it to "anyone with the link can view".</p></div>
+      <fieldset class="f inline"><legend>Does this involve controlled goods, ITAR, or defence/rocket technology? *</legend><label><input type="radio" name="controlled" value="yes" required> Yes</label><label><input type="radio" name="controlled" value="no"> No</label><label><input type="radio" name="controlled" value="unsure"> Not sure</label><p class="hint">If yes or not sure, please don't share technical files until we've reviewed requirements together.</p></fieldset>
+      <div class="f"><label for="referral">How did you hear about us?</label><select id="referral" name="referral"><option value="">Choose…</option><option>Search</option><option>LinkedIn</option><option>Referral</option><option>GitHub</option><option>Event</option><option>Other</option></select></div>
+    </fieldset>
+
+    <fieldset class="step" data-step="5">
+      <legend>05 — Review</legend>
+      <dl id="review" class="review"></dl>
+      <label class="consent"><input type="checkbox" id="consent" name="consent" required> I agree to be contacted about this request. *</label>
+    </fieldset>
+
+    <div id="errors" class="errors" role="alert" aria-live="assertive"></div>
+    <div class="actions">
+      <button type="button" class="btn ghost" id="back">Back</button>
+      <button type="button" class="btn" id="next">Next</button>
+      <button type="submit" class="btn" id="submit">Submit request</button>
+    </div>
+  </form>
+
+  <p class="mono small privacy">Your details are used only to respond to this request.</p>
+</main>
+<footer><p class="mono">© 2026 Milford Machining & Fabrication · Axiom is a division of MMF · Ontario, Canada</p></footer>
+<script src="js/intake.js"></script>
+</body></html>
