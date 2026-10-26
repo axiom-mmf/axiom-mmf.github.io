@@ -142,3 +142,8 @@ background-color:rgba(255,255,255,.008);background-image:linear-gradient(rgba(23
 .cs-tl .mono{font-size:13px;color:var(--fg,#e8e6e1)}
 .cs-tl p{font-size:13px;color:var(--dim);margin:6px auto 0}
 @media (max-width:700px){.cs-tl{grid-template-columns:1fr;gap:0}.cs-tl::before{left:5px;right:auto;top:8px;bottom:8px;width:1px;height:auto}.cs-tl li{text-align:left;padding:0 0 16px 26px}.cs-tl li::before{left:0;margin:0;top:4px}.cs-tl p{margin:2px 0 0}}
+/* Work tile with a viewport capture */
+.wk-img.vp{position:relative;border:1px solid rgba(232,230,225,.14);background-color:#9da3aa;overflow:hidden;align-items:flex-start;justify-content:flex-start}
+.wk-img.vp::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(120% 95% at 50% 45%,transparent 55%,rgba(7,8,10,.55) 100%);box-shadow:inset 0 0 0 1px rgba(7,8,10,.6)}
+.vp-tag{position:relative;z-index:1;margin:8px;padding:3px 6px;background:rgba(7,8,10,.72);color:var(--dim);font-size:9px;letter-spacing:.1em;text-transform:uppercase}
+@media print{.wk-img.vp::after{display:none}.vp-tag{display:none}}
