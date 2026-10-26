@@ -1,5 +1,5 @@
 // Web3Forms access key. Get a free key at https://web3forms.com (enter your email, the key is emailed to you).
-const WEB3FORMS_ACCESS_KEY = 'REPLACE_ME';
+const WEB3FORMS_ACCESS_KEY = '4abdd290-d8bf-46f6-b11a-bef68203ede5';
 // Address shown when the form isn't connected or sending fails. Leave '' to hide it.
 const CONTACT_EMAIL = '';
 
