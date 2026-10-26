@@ -76,3 +76,25 @@ if(q.has('sy')){scrollTo({top:+q.get('sy'),behavior:'instant'});scrollY=+q.get('
 if(q.has('mx')){ptr.x=ptr.tx=+q.get('mx');ptr.y=ptr.ty=+q.get('my');ptr.a=ptr.ta=1;for(let k=0;k<120;k++)frame()}
 frame(); start();
 })();
+// RDE-2 render: click-to-expand (desktop, fine pointer only), FLIP animation.
+(()=>{
+const mq=matchMedia('(pointer:fine) and (min-width:900px)'),rm=matchMedia('(prefers-reduced-motion: reduce)');
+const imgs=[...document.querySelectorAll('.render-card img')];if(!imgs.length)return;
+let bd=null,clone=null,src=null,busy=false;const D=450,E='cubic-bezier(.22,.61,.36,1)';
+function setup(){imgs.forEach(i=>{const on=mq.matches;i.classList.toggle('zoomable',on);if(on){i.tabIndex=0;i.setAttribute('role','button');i.setAttribute('aria-expanded','false');i.setAttribute('aria-label',(i.alt||'Image')+' — expand')}else{i.removeAttribute('tabindex');i.removeAttribute('role');i.removeAttribute('aria-expanded');i.removeAttribute('aria-label')}})}
+setup();mq.addEventListener('change',()=>{if(clone)close(true);setup()});
+function open(i){if(busy||clone||!mq.matches)return;busy=true;src=i;const r=i.getBoundingClientRect(),ar=r.width/r.height;
+let w=innerWidth*.8,h=w/ar;if(h>innerHeight*.8){h=innerHeight*.8;w=h*ar}const x=(innerWidth-w)/2,y=(innerHeight-h)/2;
+bd=document.createElement('div');bd.className='zoom-bd';document.body.appendChild(bd);
+clone=new Image();clone.src='/assets/work/rde-2-1600.webp';clone.onerror=()=>{clone.src='/assets/work/rde-2.png'};clone.alt=i.alt;clone.className='zoom-img';
+Object.assign(clone.style,{left:x+'px',top:y+'px',width:w+'px',height:h+'px',transform:`translate(${r.left-x}px,${r.top-y}px) scale(${r.width/w})`});
+document.body.appendChild(clone);i.style.visibility='hidden';i.setAttribute('aria-expanded','true');document.documentElement.classList.add('zoom-lock');
+clone.addEventListener('click',()=>close());bd.addEventListener('click',()=>close());
+const t=rm.matches?0:D;requestAnimationFrame(()=>{clone.style.transition=`transform ${t}ms ${E}`;bd.style.transition=`opacity ${t}ms ease`;clone.style.transform='none';bd.style.opacity='1';setTimeout(()=>busy=false,t)})}
+function close(now){if(!clone||(busy&&!now))return;busy=true;const i=src,c=clone,b=bd,r=i.getBoundingClientRect(),cr=c.getBoundingClientRect();
+const t=(rm.matches||now)?0:D;c.style.transition=`transform ${t}ms ${E}`;b.style.transition=`opacity ${t}ms ease`;
+c.style.transform=`translate(${r.left-parseFloat(c.style.left)}px,${r.top-parseFloat(c.style.top)}px) scale(${r.width/parseFloat(c.style.width)})`;b.style.opacity='0';
+setTimeout(()=>{c.remove();b.remove();i.style.visibility='';i.setAttribute('aria-expanded','false');document.documentElement.classList.remove('zoom-lock');clone=bd=null;busy=false;i.focus({preventScroll:true})},t)}
+imgs.forEach(i=>{i.addEventListener('click',e=>{if(!mq.matches)return;e.preventDefault();open(i)});i.addEventListener('keydown',e=>{if(mq.matches&&(e.key==='Enter'||e.key===' ')){e.preventDefault();clone?close():open(i)}})});
+document.addEventListener('keydown',e=>{if(!clone)return;if(e.key==='Escape'||e.key==='Enter'||e.key===' '){e.preventDefault();close()}});
+})();
