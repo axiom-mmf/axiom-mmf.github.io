@@ -79,14 +79,14 @@ frame(); start();
 // RDE-2 render: click-to-expand (desktop, fine pointer only), FLIP animation.
 (()=>{
 const mq=matchMedia('(pointer:fine) and (min-width:900px)'),rm=matchMedia('(prefers-reduced-motion: reduce)');
-const imgs=[...document.querySelectorAll('.render-card img')];if(!imgs.length)return;
+const imgs=[...document.querySelectorAll('.render-card img, img[data-zoom]')];if(!imgs.length)return;
 let bd=null,clone=null,src=null,busy=false;const D=450,E='cubic-bezier(.22,.61,.36,1)';
 function setup(){imgs.forEach(i=>{const on=mq.matches;i.classList.toggle('zoomable',on);if(on){i.tabIndex=0;i.setAttribute('role','button');i.setAttribute('aria-expanded','false');i.setAttribute('aria-label',(i.alt||'Image')+' — expand')}else{i.removeAttribute('tabindex');i.removeAttribute('role');i.removeAttribute('aria-expanded');i.removeAttribute('aria-label')}})}
 setup();mq.addEventListener('change',()=>{if(clone)close(true);setup()});
-function open(i){if(busy||clone||!mq.matches)return;busy=true;src=i;const r=i.getBoundingClientRect(),ar=r.width/r.height;
+function open(i){if(busy||clone||!mq.matches)return;const sc=i.closest('.s-scroll');if(sc&&!sc.classList.contains('done'))return;busy=true;src=i;const r=i.getBoundingClientRect(),ar=r.width/r.height;
 let w=innerWidth*.8,h=w/ar;if(h>innerHeight*.8){h=innerHeight*.8;w=h*ar}const x=(innerWidth-w)/2,y=(innerHeight-h)/2;
 bd=document.createElement('div');bd.className='zoom-bd';document.body.appendChild(bd);
-clone=new Image();clone.src='/assets/work/rde-2-1600.webp';clone.onerror=()=>{clone.src='/assets/work/rde-2.png'};clone.alt=i.alt;clone.className='zoom-img';
+clone=new Image();clone.src=i.dataset.zoom||'/assets/work/rde-2-1600.webp';clone.onerror=()=>{clone.onerror=null;clone.src=i.dataset.zoomFallback||'/assets/work/rde-2.png'};clone.alt=i.alt;clone.className='zoom-img';
 Object.assign(clone.style,{left:x+'px',top:y+'px',width:w+'px',height:h+'px',transform:`translate(${r.left-x}px,${r.top-y}px) scale(${r.width/w})`});
 document.body.appendChild(clone);i.style.visibility='hidden';i.setAttribute('aria-expanded','true');document.documentElement.classList.add('zoom-lock');
 clone.addEventListener('click',()=>close());bd.addEventListener('click',()=>close());
@@ -98,3 +98,13 @@ setTimeout(()=>{c.remove();b.remove();i.style.visibility='';i.setAttribute('aria
 imgs.forEach(i=>{i.addEventListener('click',e=>{if(!mq.matches)return;e.preventDefault();open(i)});i.addEventListener('keydown',e=>{if(mq.matches&&(e.key==='Enter'||e.key===' ')){e.preventDefault();clone?close():open(i)}})});
 document.addEventListener('keydown',e=>{if(!clone)return;if(e.key==='Escape'||e.key==='Enter'||e.key===' '){e.preventDefault();close()}});
 })();
+
+// Scroll reveal (about page): cut line sweeps exterior -> section view while the block is pinned.
+(()=>{const sw=document.querySelector('.sweep.rv');if(!sw)return;const st=sw.querySelector('.s-scroll');
+const rm=matchMedia('(prefers-reduced-motion: reduce)').matches;let pt=0,pc=0,run=true;
+if(rm){st.style.setProperty('--p',.5);st.style.setProperty('--o',1);return}
+function read(){const r=sw.getBoundingClientRect(),span=Math.max(1,r.height-innerHeight);let t=Math.min(1,Math.max(0,-r.top/span));pt=t<.1?0:t>.9?1:(t-.1)/.8}
+document.addEventListener('visibilitychange',()=>{run=!document.hidden;if(run)requestAnimationFrame(tick)});
+function tick(){if(!run)return;if(!document.documentElement.classList.contains('zoom-lock')){read();pc+=(pt-pc)*.08;if(Math.abs(pc-pt)<1e-4)pc=pt;
+st.style.setProperty('--p',pc.toFixed(4));st.style.setProperty('--o',(pc<=.001||pc>=.999)?0:1);st.classList.toggle('done',pc>=.995)}requestAnimationFrame(tick)}
+requestAnimationFrame(tick)})();
