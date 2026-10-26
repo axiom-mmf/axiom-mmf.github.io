@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://axiom-mmf.github.io/sitemap.xml
+Sitemap: https://axiom-mmf.ca/sitemap.xml
