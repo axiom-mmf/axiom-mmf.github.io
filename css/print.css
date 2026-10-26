@@ -10,7 +10,7 @@ html,body{background:#fff!important;font-size:11pt;line-height:1.45}
 /* wordmark at top */
 header.nav{position:static!important;display:block!important;border-bottom:1.5pt solid #000;padding:0 0 6pt!important;margin:0 0 14pt!important;height:auto!important;backdrop-filter:none!important}
 header.nav .brand{font-size:16pt;letter-spacing:.2em;text-decoration:none}
-header.nav .brand::after{content:"  ·  axiom-mmf.github.io";font-size:8pt;letter-spacing:.05em}
+header.nav .brand::after{content:"  ·  axiom-mmf.ca";font-size:8pt;letter-spacing:.05em}
 section,main,.hero,.phero{min-height:0!important;height:auto!important;padding-top:6pt!important;padding-bottom:6pt!important}
 h1,h2,h3{page-break-after:avoid;break-after:avoid}
 p,li{orphans:3;widows:3}
@@ -22,7 +22,7 @@ img{max-width:100%!important;break-inside:avoid}
 img[src*="white"]{filter:invert(1)!important}
 /* link URLs in main content */
 main a[href^="http"]::after,main a[href^="/"]::after{content:" (" attr(href) ")";font-size:8.5pt;word-break:break-all}
-main a[href^="/"]::after{content:" (axiom-mmf.github.io" attr(href) ")"}
+main a[href^="/"]::after{content:" (axiom-mmf.ca" attr(href) ")"}
 main a[href^="#"]::after,main .brand::after{content:none}
 /* RDE-2 reveal: single static exterior */
 .sweep.rv{height:auto!important;margin:8pt 0!important}
