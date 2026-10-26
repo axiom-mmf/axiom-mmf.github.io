@@ -1,7 +1,7 @@
 // Web3Forms access key. Get a free key at https://web3forms.com (enter your email, the key is emailed to you).
 const WEB3FORMS_ACCESS_KEY = '4abdd290-d8bf-46f6-b11a-bef68203ede5';
 // Address shown when the form isn't connected or sending fails. Leave '' to hide it.
-const CONTACT_EMAIL = 'hello@axiom-mmf.ca';
+const CONTACT_EMAIL = ['hello','axiom-mmf.ca'].join('@');
 
 const STORE = 'axiom-intake-v1';
 const form = document.getElementById('intake');
@@ -155,3 +155,6 @@ if(q.has('demo')){
   if(r){r.checked=true; if(st<2) st=2;}
   syncBranches(); show(st, false);
 }
+
+// Contact address assembled at runtime (anti-scraper)
+document.querySelectorAll("a.em[data-u]").forEach(a=>{const e=a.dataset.u+"@"+a.dataset.d;a.href="mailto:"+e;a.textContent=e;a.hidden=false});
