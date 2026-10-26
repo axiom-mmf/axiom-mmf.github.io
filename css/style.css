@@ -93,3 +93,7 @@ footer{display:grid;gap:14px;justify-items:center}.fnav{display:flex;gap:22px;fl
 .render-card img{display:block;width:100%;height:auto;filter:drop-shadow(0 0 1px rgba(255,255,255,.18)) drop-shadow(0 18px 40px rgba(0,0,0,.6))}
 .render-card figcaption{color:var(--dim);font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin-top:14px;text-align:center}
 .render-card.sm{margin-top:24px}
+.render-card img.zoomable{cursor:zoom-in}.render-card img.zoomable:focus-visible{outline:2px solid var(--accent);outline-offset:6px;border-radius:6px}
+.zoom-bd{position:fixed;inset:0;z-index:90;background:radial-gradient(closest-side,rgba(40,40,42,.9),rgba(5,6,8,.9));opacity:0;cursor:zoom-out}
+.zoom-img{position:fixed;z-index:91;margin:0;transform-origin:0 0;cursor:zoom-out;will-change:transform;filter:drop-shadow(0 0 1px rgba(255,255,255,.18))}
+html.zoom-lock,html.zoom-lock body{overflow:hidden}
