@@ -180,3 +180,5 @@ background-color:rgba(255,255,255,.008);background-image:linear-gradient(rgba(23
 /* Selected work: fixed column counts so a short last row is centred, not left with a gap */
 @media (min-width:640px){.work{grid-template-columns:repeat(4,1fr)}.work>.wk{grid-column:span 2}.work>.wk:nth-child(2n+1):last-child{grid-column:2/span 2}}
 @media (min-width:995px){.work{grid-template-columns:repeat(6,1fr)}.work>.wk:nth-child(2n+1):last-child{grid-column:span 2}.work>.wk:nth-child(3n+1):nth-last-child(2){grid-column:2/span 2}.work>.wk:nth-child(3n+1):last-child{grid-column:3/span 2}}
+
+.nav nav a[aria-current="page"]:not(.btn){color:var(--ink)}
