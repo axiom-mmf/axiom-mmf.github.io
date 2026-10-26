@@ -152,3 +152,6 @@ document.addEventListener('visibilitychange',()=>{run=!document.hidden;if(run)re
 function tick(){if(!run)return;if(!document.documentElement.classList.contains('zoom-lock')){read();pc+=(pt-pc)*.08;if(Math.abs(pc-pt)<1e-4)pc=pt;
 st.style.setProperty('--p',pc.toFixed(4));st.style.setProperty('--o',(pc<=.001||pc>=.999)?0:1);st.classList.toggle('done',pc>=.995);if(pct)pct.textContent=Math.round(pc*100)+'%'}requestAnimationFrame(tick)}
 requestAnimationFrame(tick)})();
+
+// Contact address assembled at runtime (anti-scraper)
+document.querySelectorAll("a.em[data-u]").forEach(a=>{const e=a.dataset.u+"@"+a.dataset.d;a.href="mailto:"+e;a.textContent=e;a.hidden=false});
