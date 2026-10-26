@@ -4,7 +4,7 @@ if(location.search.includes("static"))document.documentElement.classList.add("st
 const els=document.querySelectorAll('.reveal');
 if(!('IntersectionObserver' in window)||location.search.includes('static')){els.forEach(e=>e.classList.add('in'))}
 else{const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});els.forEach(e=>io.observe(e))}
-// Abstract rings for flagship placeholder (not engine geometry)
+
 const g=document.getElementById('rings');
 if(g){for(let i=0;i<18;i++){const c=document.createElementNS('http://www.w3.org/2000/svg','ellipse');c.setAttribute('cx',300);c.setAttribute('cy',300);c.setAttribute('rx',60+i*12);c.setAttribute('ry',(60+i*12)*0.38);c.setAttribute('transform',`rotate(${i*10} 300 300)`);g.appendChild(c)}}
 // Hero voxel field: subtle, reactive. Pointer-events none; pauses when hidden.
