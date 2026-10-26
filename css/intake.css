@@ -36,3 +36,5 @@ input:focus,select:focus,textarea:focus,.choice input:focus-visible+span,.btn:fo
 .privacy{margin-top:40px}
 @media(max-width:520px){.review{grid-template-columns:1fr}.review dd{margin-bottom:8px}.progress li{min-width:0;font-size:9px}}
 [hidden]{display:none!important}
+#next,#submit{margin-left:auto}
+.result:focus{outline:none}

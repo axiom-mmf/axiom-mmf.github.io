@@ -27,7 +27,7 @@ function show(n, focus=true){
   cur = n;
   steps.forEach(s=>s.classList.toggle('active', +s.dataset.step===n));
   prog.forEach(p=>{const i=+p.dataset.p;p.classList.toggle('done',i<n);p.classList.toggle('cur',i===n);p.toggleAttribute('aria-current',i===n)});
-  btnBack.style.visibility = n>1 ? 'visible' : 'hidden';
+  btnBack.hidden = n===1;
   btnNext.hidden = n===5; btnSubmit.hidden = n!==5;
   if(n===5) buildReview();
   errBox.textContent='';
@@ -109,7 +109,7 @@ function contactLine(){
 function showResult(kind, title, html){
   form.hidden = kind==='ok'; document.querySelector('.progress').hidden = kind==='ok';
   result.className='result '+kind; result.hidden=false;
-  result.innerHTML=`<h2></h2>${html}`; result.querySelector('h2').textContent=title; result.focus({preventScroll:true}); result.scrollIntoView({block:'center'});
+  result.innerHTML=`<h2></h2>${html}`; result.querySelector('h2').textContent=title; result.focus({preventScroll:true}); kind==='ok'?window.scrollTo(0,0):result.scrollIntoView({block:'nearest'});
 }
 
 btnNext.addEventListener('click',()=>{ if(validate(cur)) show(cur+1) });
@@ -149,4 +149,9 @@ if(q.has('demo')){
   syncBranches(); show(+q.get('demo')||1,false);
   if(q.has('fallback')){document.getElementById('consent').checked=true;form.requestSubmit()}
   if(q.has('err')){show(1,false);document.getElementById('email').value='bad';validate(1)}
-} else { syncBranches(); show(restore(), false); }
+} else {
+  let st=restore(); const pre=q.get('service');
+  const r=pre&&form.querySelector(`[name=service][value="${CSS.escape(pre)}"]`);
+  if(r){r.checked=true; if(st<2) st=2;}
+  syncBranches(); show(st, false);
+}
