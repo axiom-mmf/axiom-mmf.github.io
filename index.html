@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Axiom — Computational Engineering Studio | a division of Milford Machining & Fabrication</title>
+<meta name="description" content="Axiom is a computational engineering and design studio in Ontario, Canada: algorithmic and voxel geometry, native Rhino .3dm delivery, automation and CAD, backed by Milford Machining & Fabrication.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="nav">
+  <a class="brand" href="#top">AXIOM<span>/MMF</span></a>
+  <nav><a href="#capabilities">Capabilities</a><a href="#rde2">RDE-2</a><a href="#process">Process</a><a class="btn sm" href="#intake">Start a project</a></nav>
+</header>
+
+<main id="top">
+<section class="hero">
+  <canvas id="field" aria-hidden="true"></canvas>
+  <div class="hero-inner">
+    <p class="eyebrow mono">Computational engineering studio · Ontario, Canada</p>
+    <h1 class="reveal">Geometry,<br>derived from<br><em>first principles.</em></h1>
+    <p class="lede reveal">Axiom designs parts and systems as code: rule-driven, voxel-based geometry delivered as native Rhino files, and built by hands that machine metal.</p>
+    <div class="cta-row reveal"><a class="btn" href="#intake">Start a project</a><a class="btn ghost" href="#rde2">See the flagship</a></div>
+  </div>
+  <p class="scroll mono">Scroll</p>
+</section>
+
+<section class="manifesto" id="manifesto">
+  <p class="mono label">01 — Position</p>
+  <div class="m-lines">
+    <p class="reveal">We don't redraw parts.</p>
+    <p class="reveal">We write the rules that produce them.</p>
+    <p class="reveal dim">Change a requirement, regenerate the design.</p>
+    <p class="reveal dim">Every output traceable to its inputs.</p>
+    <p class="reveal">Then we make it real, in our own shop.</p>
+  </div>
+</section>
+
+<section class="pillars" id="capabilities">
+  <p class="mono label">02 — Capabilities</p>
+  <div class="grid">
+    <article class="card reveal"><span class="mono n">A</span><h3>Computational design</h3><p>Algorithmic and voxel geometry built on the open-source PicoGK kernel: lattices, conformal channels, part families generated from rules.</p></article>
+    <article class="card reveal"><span class="mono n">B</span><h3>Native .3dm delivery</h3><p>Results arrive as clean Rhino files your team can open, edit and fabricate from. No proprietary viewer, no lock-in.</p></article>
+    <article class="card reveal"><span class="mono n">C</span><h3>Automation</h3><p>Right-sized controls for small manufacturers: AutomationDirect CLICK PLCs, Shelly and ESP32 monitoring, documented I/O.</p></article>
+    <article class="card reveal"><span class="mono n">D</span><h3>CAD & drafting</h3><p>Production-ready models, assemblies and drawings, plus accurate as-built 3D capture of rooms and equipment.</p></article>
+  </div>
+</section>
+
+<section class="flagship" id="rde2">
+  <div class="flag-visual reveal" aria-label="Abstract placeholder visual for RDE-2">
+    <svg viewBox="0 0 600 600" role="img"><title>Abstract placeholder, not engine geometry</title>
+      <defs><radialGradient id="g" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ff6a2b" stop-opacity=".9"/><stop offset=".5" stop-color="#ff6a2b" stop-opacity=".15"/><stop offset="1" stop-color="#ff6a2b" stop-opacity="0"/></radialGradient></defs>
+      <circle cx="300" cy="300" r="260" fill="url(#g)"/>
+      <g id="rings" fill="none" stroke="#e8e6e1" stroke-opacity=".35"></g>
+    </svg>
+    <p class="mono ph">Placeholder visual · final renders pending export review</p>
+  </div>
+  <div class="flag-copy">
+    <p class="mono label">03 — Flagship</p>
+    <h2 class="reveal">RDE-2</h2>
+    <p class="reveal sub">A methalox rotating detonation engine, designed end-to-end in Axiom.</p>
+    <p class="reveal">RDE-2 is our proving ground: a geometry too complex to draw by hand, generated entirely from engineering rules and exported as a manufacturable model. It shows what the method can carry.</p>
+    <ul class="facts mono reveal"><li>Fully computational geometry</li><li>Single-source rule set</li><li>Native .3dm output</li><li>Designed for additive manufacturing</li></ul>
+    <p class="note">Technical details are withheld. Propulsion data may be subject to Canadian and US export controls.</p>
+  </div>
+</section>
+
+<section class="process" id="process">
+  <p class="mono label">04 — Process</p>
+  <ol>
+    <li class="reveal"><span class="mono">01</span><h4>Intake</h4><p>Requirements, files, constraints and timeline, captured in one form.</p></li>
+    <li class="reveal"><span class="mono">02</span><h4>Define the rules</h4><p>We translate requirements into the logic that drives geometry.</p></li>
+    <li class="reveal"><span class="mono">03</span><h4>Generate & review</h4><p>Iterations in days, reviewed with you against the brief.</p></li>
+    <li class="reveal"><span class="mono">04</span><h4>Deliver & build</h4><p>Native files, drawings, and optional machining and fabrication at MMF.</p></li>
+  </ol>
+</section>
+
+<section class="endorse">
+  <img src="assets/mmf-logo-white.png" alt="Milford Machining & Fabrication logo" width="160">
+  <div><p class="mono label">A division of</p><h3>Milford Machining & Fabrication</h3><p>The parent shop and hands-on arm: machining, fabrication and machine builds in Prince Edward County, Ontario. Axiom designs it; MMF makes it.</p></div>
+</section>
+
+<section class="intake" id="intake">
+  <h2 class="reveal">Bring us the hard part.</h2>
+  <p class="reveal">Tell us what you're building. We reply within two business days with next steps or a fixed quote.</p>
+  <a class="btn big reveal" href="#" data-placeholder="intake form link">Start a project →</a>
+  <p class="mono small">Defence, rocket or controlled-goods work is reviewed before any files are exchanged.</p>
+</section>
+</main>
+
+<footer><p class="mono">© 2026 Milford Machining & Fabrication · Axiom is a division of MMF · Ontario, Canada</p></footer>
+<script src="js/main.js"></script>
+</body></html>
