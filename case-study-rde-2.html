@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RDE-2 case study — how it was designed | Axiom / MMF</title>
+<meta name="description" content="How Axiom designed RDE-2, a methane/oxygen rotating detonation engine research demonstrator: design goals, a collaborative human + AI review loop, and a multi-step design and test approach.">
+<link rel="canonical" href="https://axiom-mmf.github.io/case-study-rde-2.html">
+<meta name="theme-color" content="#07080A">
+<link rel="icon" href="/favicon.ico" sizes="48x48"><link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Axiom / MMF"><meta property="og:locale" content="en_CA">
+<meta property="og:title" content="RDE-2 case study — how it was designed | Axiom / MMF"><meta property="og:description" content="How Axiom designed RDE-2, a methane/oxygen rotating detonation engine research demonstrator: design goals, a collaborative human + AI review loop, and a multi-step design and test approach."><meta property="og:url" content="https://axiom-mmf.github.io/case-study-rde-2.html">
+<meta property="og:image" content="https://axiom-mmf.github.io/assets/og-image.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="AXIOM/MMF: Geometry, derived from first principles.">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="RDE-2 case study — how it was designed | Axiom / MMF"><meta name="twitter:description" content="How Axiom designed RDE-2, a methane/oxygen rotating detonation engine research demonstrator: design goals, a collaborative human + AI review loop, and a multi-step design and test approach."><meta name="twitter:image" content="https://axiom-mmf.github.io/assets/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css?v=202610261534">
+<link rel="stylesheet" href="/css/print.css?v=202610261534" media="print">
+</head>
+<body class="sub">
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav">
+  <a class="brand" href="/" aria-label="Axiom / MMF home">AXIOM<span>/MMF</span></a>
+  <nav aria-label="Main"><a href="/services.html">Services</a><a href="/pricing.html">Pricing</a><a href="/case-study-rde-2.html">About</a><a href="/case-study-rde-2.html">RDE-2</a><a class="btn sm" href="/intake.html">Start a project</a></nav>
+</header>
+<main id="main">
+<section class="phero"><p class="mono label">Case study · RDE-2</p><h1 class="ptitle">How RDE-2 was designed.</h1><p class="ilede">A methane/oxygen rotating detonation engine, built as a research demonstrator. This page covers the process: what we set out to do, how the work is reviewed, and how each step is checked.</p></section>
+<section class="cs">
+<figure class="cs-hero render-card"><img src="/assets/work/rde-2-ext-1600.webp" srcset="/assets/work/rde-2-ext-800.webp 800w, /assets/work/rde-2-ext-1600.webp 1600w" sizes="(max-width:900px) 94vw, 1000px" width="1600" height="1030" loading="lazy" decoding="async" alt="RDE-2 exterior render" data-zoom="/assets/work/rde-2-ext-1600.webp"><figcaption class="mono">RDE-2 · exterior</figcaption></figure>
+<h2 class="th">Design goals</h2>
+<ul class="tick cs-list"><li>A compact combustor made entirely by additive manufacturing.</li><li>Dual regenerative cooling: both propellants cool the walls before they are injected.</li><li>An injector developed and checked in the same design loop as the rest of the engine.</li><li>The current iteration is a two-part build with a standard mount.</li></ul>
+<h2 class="th">A collaborative human + AI process</h2>
+<p>An engineer develops the design with an AI design agent. The agent writes and runs a code-driven geometry generator. Every iteration ends in a design review of a native 3D model, not a screenshot, and nothing new is generated until the engineer gives the go-ahead.</p>
+<p>Each review produces specific changes. The step from v0.1c to v0.1d alone carried ten agreed changes, from the mounting style to how the fuel inlet enters the part. Lessons from each round are written down as design rules, so the next iteration starts from a better place. The v0.1d build passed all of its automated manufacturability and connectivity checks, with zero failures.</p>
+<h2 class="th">A multi-step design and test approach</h2>
+<ol class="values cs-steps">
+<li><span class="mono">01</span><h3>First principles</h3><p>Detonation properties, scaling, cooling break-even and printability limits set the design point before any CAD.</p></li>
+<li><span class="mono">02</span><h3>Generated geometry, checked automatically</h3><p>Flow-path connectivity, wall clearances and trapped-volume checks run on every build.</p></li>
+<li><span class="mono">03</span><h3>Preliminary cold-flow CFD</h3><p>An injector element was simulated in cold flow across a wide range of flow rates, in both directions, switching to a compressible solver where the flow requires it. These are early, preliminary results, not hot-fire data.</p></li>
+<li><span class="mono">04</span><h3>Mesh sensitivity check</h3><p>The same case was run on coarse, medium and fine meshes to see how much the answer depends on the mesh. This is a sensitivity check, not a mesh-convergence study.</p></li>
+<li><span class="mono">05</span><h3>Benchmarking against published work</h3><p>Results were compared with openly published designs. That confirmed our assumptions and led to five corrections.</p></li>
+<li><span class="mono">06</span><h3>Automated simulation runs</h3><p>Simulations run on in-house hardware through an automated pipeline, so results come back without files being copied by hand.</p></li></ol>
+<h2 class="th">Iteration timeline</h2>
+<ol class="cs-tl" aria-label="RDE-2 design and test iterations (qualitative)"><li><span class="mono">v0.1</span><p>First-principles design point</p></li><li><span class="mono">v0.1a–c</span><p>Generator, automatic checks, review loops</p></li><li><span class="mono">v0.1d</span><p>Two-part build, model review, 0 check failures</p></li><li><span class="mono">CFD 1a</span><p>Preliminary cold-flow sweep and mesh check</p></li><li><span class="mono">Benchmark</span><p>Compared with published work</p></li></ol>
+<p class="wk-note mono">Qualitative. Versions v0.1a–c are grouped.</p>
+<figure class="cs-sec render-card"><img src="/assets/work/rde-2-sec-1600.webp" srcset="/assets/work/rde-2-sec-800.webp 800w, /assets/work/rde-2-sec-1600.webp 1600w" sizes="(max-width:900px) 94vw, 1000px" width="1600" height="1030" loading="lazy" decoding="async" alt="RDE-2 section render" data-zoom="/assets/work/rde-2-sec-1600.webp"><figcaption class="mono">RDE-2 · section</figcaption></figure>
+<p class="note">Technical details are withheld. Propulsion data may be subject to Canadian and US export controls.</p>
+<p class="cen"><a class="btn big" href="/intake.html">Start a project →</a></p></section>
+</main>
+<footer><nav class="fnav mono" aria-label="Footer"><a href="/">Home</a><a href="/services.html">Services</a><a href="/pricing.html">Pricing</a><a href="/about.html">About</a><a href="/case-study-rde-2.html">RDE-2 case study</a><a href="/intake.html">Start a project</a><a href="https://github.com/Isowix" target="_blank" rel="noopener">GitHub</a></nav><p class="mono">© 2026 Milford Machining &amp; Fabrication · Axiom is a division of MMF · Prince Edward County, Ontario</p></footer>
+<script src="/js/main.js?v=202610261534"></script>
+</body></html>

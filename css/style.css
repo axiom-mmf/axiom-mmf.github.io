@@ -127,3 +127,18 @@ background-color:rgba(255,255,255,.008);background-image:linear-gradient(rgba(23
 .rv-cap b{font-weight:400;color:var(--accent);display:inline-block;min-width:4ch;text-align:right;font-variant-numeric:tabular-nums}
 @media (max-width:600px){.rv-cap{flex-direction:column;gap:4px;font-size:10px}.rv-fig .s-scroll{width:100%!important}}
 @media (prefers-reduced-motion:reduce){.sweep.rv{height:auto!important}.sweep.rv .sticky{position:static}}
+
+/* RDE-2 case study */
+.cs{max-width:1000px;margin:0 auto;padding:0 24px 80px}
+.cs p{max-width:68ch;margin:0 0 1em}
+.cs-hero,.cs-sec{margin:8px 0 24px}
+.cs-hero img,.cs-sec img{width:100%;height:auto;display:block}
+.cs-hero figcaption,.cs-sec figcaption{color:var(--dim);font-size:11px;letter-spacing:.1em;text-transform:uppercase;text-align:center;margin-top:10px}
+.cs-list{max-width:68ch}
+.cs-tl{list-style:none;padding:0;margin:24px 0 8px;display:grid;grid-template-columns:repeat(5,1fr);gap:12px;position:relative}
+.cs-tl::before{content:"";position:absolute;left:10%;right:10%;top:7px;height:1px;background:rgba(255,106,43,.45)}
+.cs-tl li{position:relative;padding-top:26px;text-align:center}
+.cs-tl li::before{content:"";position:absolute;top:2px;left:50%;width:11px;height:11px;margin-left:-6px;border-radius:50%;background:var(--accent,#ff6a2b)}
+.cs-tl .mono{font-size:13px;color:var(--fg,#e8e6e1)}
+.cs-tl p{font-size:13px;color:var(--dim);margin:6px auto 0}
+@media (max-width:700px){.cs-tl{grid-template-columns:1fr;gap:0}.cs-tl::before{left:5px;right:auto;top:8px;bottom:8px;width:1px;height:auto}.cs-tl li{text-align:left;padding:0 0 16px 26px}.cs-tl li::before{left:0;margin:0;top:4px}.cs-tl p{margin:2px 0 0}}

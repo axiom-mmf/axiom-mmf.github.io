@@ -44,3 +44,5 @@ footer p{font-size:8pt}
 .rv-fig .s-scroll{width:70%!important;margin:0 auto}
 }
 @media print{.card,.pcard,.svc,.wk{min-height:0!important;height:auto!important}.grid>*{padding:8pt!important}}
+@media print{.cs-tl{display:block!important}.cs-tl::before,.cs-tl li::before{display:none!important}.cs-tl li{text-align:left!important;padding:0 0 4pt!important;break-inside:avoid}.cs-tl li .mono{font-weight:700;margin-right:6pt}.cs-tl p{display:inline}.cs-hero img,.cs-sec img{width:70%!important;margin:0 auto}.cs-sec{display:none!important}}
+@media print{.cs-list{break-inside:avoid}}
