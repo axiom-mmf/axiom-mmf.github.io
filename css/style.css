@@ -110,8 +110,20 @@ html.zoom-lock,html.zoom-lock body{overflow:hidden}
 .s-scroll .sec{clip-path:inset(0 calc((1 - var(--p)) * 100%) 0 0)}
 .s-scroll .ext{clip-path:inset(0 0 0 calc(var(--p) * 100%))}
 .s-scroll .cut{position:absolute;z-index:3;top:4%;bottom:4%;left:calc(var(--p)*100%);width:1px;transform:translateX(-.5px);background:linear-gradient(transparent,rgba(255,106,43,.85) 20%,rgba(255,106,43,.85) 80%,transparent);box-shadow:0 0 10px 1px rgba(255,106,43,.35);opacity:var(--o,1);transition:opacity .4s}
-.rv-fig{margin:0;width:100%}.rv-fig figcaption{color:var(--dim);font-size:11px;letter-spacing:.12em;text-transform:uppercase;text-align:center;margin-top:14px}
-.sweep.rv{height:240vh;margin:40px 0}
 .s-scroll.done .sec{pointer-events:auto}
 .s-scroll .sec.zoomable{cursor:default}.s-scroll.done .sec.zoomable{cursor:zoom-in}
 @media (prefers-reduced-motion:reduce){.sweep,.sweep.rv{height:auto}.sticky{position:static;height:auto;padding:20px 0}.s-scroll .cut{transition:none}}
+
+/* About RDE-2 reveal: compact pinned frame */
+.sweep.rv{height:auto;margin:48px 0 8px}
+.sweep.rv .sticky{height:auto;top:var(--st,72px);display:block}
+.rv-fig{position:relative;margin:0 auto;width:100%;padding:clamp(14px,2vw,28px) clamp(14px,2vw,28px) 0;border:1px solid rgba(232,230,225,.07);
+background-color:rgba(255,255,255,.008);background-image:linear-gradient(rgba(232,230,225,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(232,230,225,.035) 1px,transparent 1px);background-size:32px 32px;background-position:-1px -1px}
+.rv-fig .s-scroll{width:min(90%,calc((100vh - 200px) * 1.553))!important}
+.rv-fig .tk{position:absolute;width:12px;height:12px;border:0 solid rgba(255,106,43,.45);pointer-events:none}
+.tk.tl{top:-1px;left:-1px;border-top-width:1px;border-left-width:1px}.tk.tr{top:-1px;right:-1px;border-top-width:1px;border-right-width:1px}
+.tk.bl{bottom:-1px;left:-1px;border-bottom-width:1px;border-left-width:1px}.tk.br{bottom:-1px;right:-1px;border-bottom-width:1px;border-right-width:1px}
+.rv-cap{display:flex;justify-content:space-between;gap:16px;margin:clamp(10px,1.5vw,18px) calc(-1 * clamp(14px,2vw,28px)) 0;padding:10px clamp(14px,2vw,28px);border-top:1px solid rgba(232,230,225,.07);color:var(--dim);font-size:11px;letter-spacing:.08em}
+.rv-cap b{font-weight:400;color:var(--accent);display:inline-block;min-width:4ch;text-align:right;font-variant-numeric:tabular-nums}
+@media (max-width:600px){.rv-cap{flex-direction:column;gap:4px;font-size:10px}.rv-fig .s-scroll{width:100%!important}}
+@media (prefers-reduced-motion:reduce){.sweep.rv{height:auto!important}.sweep.rv .sticky{position:static}}

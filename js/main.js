@@ -102,9 +102,12 @@ document.addEventListener('keydown',e=>{if(!clone)return;if(e.key==='Escape'||e.
 // Scroll reveal (about page): cut line sweeps exterior -> section view while the block is pinned.
 (()=>{const sw=document.querySelector('.sweep.rv');if(!sw)return;const st=sw.querySelector('.s-scroll');
 const rm=matchMedia('(prefers-reduced-motion: reduce)').matches;let pt=0,pc=0,run=true;
-if(rm){st.style.setProperty('--p',.5);st.style.setProperty('--o',1);return}
-function read(){const r=sw.getBoundingClientRect(),span=Math.max(1,r.height-innerHeight);let t=Math.min(1,Math.max(0,-r.top/span));pt=t<.1?0:t>.9?1:(t-.1)/.8}
+if(rm){st.style.setProperty('--p',.5);st.style.setProperty('--o',1);const q=sw.querySelector('.rv-pct');if(q)q.textContent='50%';return}
+const sk=sw.querySelector('.sticky'),pct=sw.querySelector('.rv-pct');let top=72,span=1;
+function lay(){const fh=sk.offsetHeight;top=Math.max(64,(innerHeight-fh)/2);span=Math.round(innerHeight*1.1);sk.style.setProperty('--st',top+'px');sw.style.height=(fh+span)+'px'}
+lay();addEventListener('resize',lay);addEventListener('load',lay);
+function read(){const r=sw.getBoundingClientRect();let t=Math.min(1,Math.max(0,(top-r.top)/span));pt=t<.04?0:t>.96?1:(t-.04)/.92}
 document.addEventListener('visibilitychange',()=>{run=!document.hidden;if(run)requestAnimationFrame(tick)});
 function tick(){if(!run)return;if(!document.documentElement.classList.contains('zoom-lock')){read();pc+=(pt-pc)*.08;if(Math.abs(pc-pt)<1e-4)pc=pt;
-st.style.setProperty('--p',pc.toFixed(4));st.style.setProperty('--o',(pc<=.001||pc>=.999)?0:1);st.classList.toggle('done',pc>=.995)}requestAnimationFrame(tick)}
+st.style.setProperty('--p',pc.toFixed(4));st.style.setProperty('--o',(pc<=.001||pc>=.999)?0:1);st.classList.toggle('done',pc>=.995);if(pct)pct.textContent=Math.round(pc*100)+'%'}requestAnimationFrame(tick)}
 requestAnimationFrame(tick)})();
