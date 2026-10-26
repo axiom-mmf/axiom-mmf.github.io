@@ -79,9 +79,10 @@ frame(); start();
 // RDE-2 render: click-to-expand (desktop, fine pointer only), FLIP animation.
 (()=>{
 const mq=matchMedia('(pointer:fine) and (min-width:900px)'),rm=matchMedia('(prefers-reduced-motion: reduce)');
-const imgs=[...document.querySelectorAll('.render-card img, img[data-zoom]')];if(!imgs.length)return;
+const imgs=[...document.querySelectorAll('.render-card img, img[data-zoom]')];
 let bd=null,clone=null,src=null,busy=false;const D=450,E='cubic-bezier(.22,.61,.36,1)';
-function setup(){imgs.forEach(i=>{const on=mq.matches;i.classList.toggle('zoomable',on);if(on){i.tabIndex=0;i.setAttribute('role','button');i.setAttribute('aria-expanded','false');i.setAttribute('aria-label',(i.alt||'Image')+' — expand')}else{i.removeAttribute('tabindex');i.removeAttribute('role');i.removeAttribute('aria-expanded');i.removeAttribute('aria-label')}})}
+function prep(i){const on=mq.matches;i.classList.toggle('zoomable',on);if(on){i.tabIndex=0;i.setAttribute('role','button');i.setAttribute('aria-expanded','false');i.setAttribute('aria-label',(i.alt||'Image')+' — expand')}else{i.removeAttribute('tabindex');i.removeAttribute('role');i.removeAttribute('aria-expanded');i.removeAttribute('aria-label')}}
+function setup(){imgs.forEach(prep)}
 setup();mq.addEventListener('change',()=>{if(clone)close(true);setup()});
 function open(i){if(busy||clone||!mq.matches)return;const sc=i.closest('.s-scroll');if(sc&&!sc.classList.contains('done'))return;busy=true;src=i;const r=i.getBoundingClientRect(),ar=r.width/r.height;
 let w=innerWidth*.8,h=w/ar;if(h>innerHeight*.8){h=innerHeight*.8;w=h*ar}const x=(innerWidth-w)/2,y=(innerHeight-h)/2;
@@ -95,7 +96,10 @@ function close(now){if(!clone||(busy&&!now))return;busy=true;const i=src,c=clone
 const t=(rm.matches||now)?0:D;c.style.transition=`transform ${t}ms ${E}`;b.style.transition=`opacity ${t}ms ease`;
 c.style.transform=`translate(${r.left-parseFloat(c.style.left)}px,${r.top-parseFloat(c.style.top)}px) scale(${r.width/parseFloat(c.style.width)})`;b.style.opacity='0';
 setTimeout(()=>{c.remove();b.remove();i.style.visibility='';i.setAttribute('aria-expanded','false');document.documentElement.classList.remove('zoom-lock');clone=bd=null;busy=false;i.focus({preventScroll:true})},t)}
-imgs.forEach(i=>{i.addEventListener('click',e=>{if(!mq.matches)return;e.preventDefault();open(i)});i.addEventListener('keydown',e=>{if(mq.matches&&(e.key==='Enter'||e.key===' ')){e.preventDefault();clone?close():open(i)}})});
+function bind(i){i.addEventListener('click',e=>{if(!mq.matches)return;e.preventDefault();open(i)});i.addEventListener('keydown',e=>{if(mq.matches&&(e.key==='Enter'||e.key===' ')){e.preventDefault();clone?close():open(i)}})}
+imgs.forEach(bind);window.axZoomAdd=i=>{if(imgs.includes(i))return;imgs.push(i);prep(i);bind(i)};
+// Selected Work: any placeholder tile whose render file now exists becomes a zoomable image tile
+document.querySelectorAll('.wk-img[data-art]:not(.vp)').forEach(d=>{const g=d.dataset.art,p=new Image();p.onload=()=>{const im=new Image();im.src='/assets/work/'+g+'-800.webp';im.srcset='/assets/work/'+g+'-800.webp 800w, /assets/work/'+g+'-1600.webp 1600w';im.sizes='(max-width:900px) 92vw, 340px';im.width=800;im.height=500;im.decoding='async';im.alt=(d.getAttribute('aria-label')||'').replace(/ render \(coming soon\)/,'');im.dataset.zoom='/assets/work/'+g+'-1600.webp';im.dataset.zoomFallback='/assets/work/'+g+'.webp';d.className='wk-img vp';d.removeAttribute('role');d.removeAttribute('aria-label');d.textContent='';d.appendChild(im);window.axZoomAdd(im)};p.src='/assets/work/'+g+'-800.webp'});
 document.addEventListener('keydown',e=>{if(!clone)return;if(e.key==='Escape'||e.key==='Enter'||e.key===' '){e.preventDefault();close()}});
 })();
 
