@@ -119,7 +119,7 @@ document.addEventListener('keydown',e=>{if(mv&&e.key==='Escape')mclose()});
 function open(i){if(busy||clone||!mq.matches)return;const sc=i.closest('.s-scroll');if(sc&&!sc.classList.contains('done'))return;busy=true;src=i;const r=i.getBoundingClientRect(),ar=r.width/r.height;
 let w=innerWidth*.8,h=w/ar;if(h>innerHeight*.8){h=innerHeight*.8;w=h*ar}const x=(innerWidth-w)/2,y=(innerHeight-h)/2;
 bd=document.createElement('div');bd.className='zoom-bd';document.body.appendChild(bd);
-clone=new Image();clone.src=i.dataset.zoom||'/assets/work/rde-2-1600.webp';clone.onerror=()=>{clone.onerror=null;clone.src=i.dataset.zoomFallback||'/assets/work/rde-2.png'};clone.alt=i.alt;clone.className='zoom-img';
+clone=new Image();clone.src=i.dataset.zoom||i.currentSrc||i.src;clone.onerror=()=>{clone.onerror=null;clone.src=i.dataset.zoomFallback||'/assets/work/rde-2.png'};clone.alt=i.alt;clone.className='zoom-img';
 Object.assign(clone.style,{left:x+'px',top:y+'px',width:w+'px',height:h+'px',transform:`translate(${r.left-x}px,${r.top-y}px) scale(${r.width/w})`});
 document.body.appendChild(clone);gal(i);i.style.visibility='hidden';i.setAttribute('aria-expanded','true');document.documentElement.classList.add('zoom-lock');
 clone.addEventListener('click',()=>close());bd.addEventListener('click',()=>close());
